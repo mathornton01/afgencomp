@@ -1,12 +1,21 @@
 Package: afgencomp
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Alignment Free Genetic Comparisons
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Micah Andrew Thornton
+Maintainer: Micah Andrew Thornton <mathornton@smu.edu>
+Description: The original code below is from a previous version of the afgencomp package 
+  which was hosted under the name 'YinGenomicDFT'.  The code was captured from 
+  Github on 12-14-2021, but was originally dated April 2021.  The summary ' A
+  Translation of Much of the DFT Distance Framework into an R-Package ' was 
+  given as the primary purpose of the package was indeed to implement an R 
+  version of the MatLab package created by Yin and Yau (2021) for the same 
+  purpose. 
+    The software included herein is intended to be useful in providing quick 
+  distance calculations for genomic sequences based on a few alignment-free 
+  approaches, specifically (as of now) the K-mer frequency vector distance, and 
+  the Fourier transform Power and Phase Spectral Distances. 
+License: Gnu GPL 3.0 (Gnu General Public License)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
