@@ -7,18 +7,18 @@
 countFFMersEnsemble(genomicStrings, freq = FALSE)
 }
 \arguments{
-\item{genomicStrings}{A list of character strings representing the genomic signals 
+\item{genomicStrings}{A list of character strings representing the genomic signals
 of interest.}
 
-\item{freq}{Whether the user would like a vector of raw counts back or if 
+\item{freq}{Whether the user would like a vector of raw counts back or if
 a vector of relative frequencies.}
 }
 \value{
-a 1364 by number of sequences matrix containing the first five mer counts 
+a 1364 by number of sequences matrix containing the first five mer counts
 for all of the sequences in "genomicStrings".
 }
 \description{
-Generates a matrix of size 1364 by number of samples, that will contain 
+Generates a matrix of size 1364 by number of samples, that will contain
 counts/frequencies for the first five k-mers for an ensemble of genomic signals.
 }
 \examples{

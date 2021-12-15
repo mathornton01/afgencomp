@@ -7,13 +7,13 @@
 evenlyScaleSingle(genomicPS, scaleTo)
 }
 \arguments{
-\item{genomicPS}{The Power Spectrum of the genetic sequence that is being 
-scaled, in general this could be any arbitrary real sequence, however in 
-keeping with the spirit of the packages overall usability, this function is 
+\item{genomicPS}{The Power Spectrum of the genetic sequence that is being
+scaled, in general this could be any arbitrary real sequence, however in
+keeping with the spirit of the packages overall usability, this function is
 defined in terms that relate to the genomic nature of the data used.}
 
-\item{scaleTo}{The length to which it is desired to scale the original 
-spectrum.  This is the same as the value m in the original paper by Yin et 
+\item{scaleTo}{The length to which it is desired to scale the original
+spectrum.  This is the same as the value m in the original paper by Yin et
 al. (2015).}
 }
 \value{
@@ -21,12 +21,12 @@ The scaled power spectrum, which is composed of the original sequence
 of length n, and is scaled to the new size of m or 'scaleTo'.
 }
 \description{
-This function will scale a power spectrum from an initial size of n to a 
-size m.  Note that the new signal size m must be larger than the original 
+This function will scale a power spectrum from an initial size of n to a
+size m.  Note that the new signal size m must be larger than the original
 signal size n, but cannot be too large (larger than twich the original size).
 }
 \examples{
-tg <- "ACCAGGAGATTAGAGCCCCAGAGTAGAGCCCCAGAGATTAGAGCCAGAGTGAGAGCCGANNNAGAGC"; 
-pstg <- getPowerSpectraSingle(encodeGenome(tg,'2D')); 
-scaled <- evenlyScaleSingle(pstg,80); 
+tg <- "ACCAGGAGATTAGAGCCCCAGAGTAGAGCCCCAGAGATTAGAGCCAGAGTGAGAGCCGANNNAGAGC";
+pstg <- getPowerSpectraSingle(encodeGenome(tg,'2D'));
+scaled <- evenlyScaleSingle(pstg,80);
 }

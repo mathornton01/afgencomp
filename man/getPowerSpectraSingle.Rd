@@ -7,26 +7,26 @@
 getPowerSpectraSingle(encodedSignal)
 }
 \arguments{
-\item{encodedSignal}{is a genomic signal of interest, for which the average 
-power spectrum will be computed and returned to the user, you may encode 
-your genomic character strings by using the encodeGenomes or encodeGenome 
+\item{encodedSignal}{is a genomic signal of interest, for which the average
+power spectrum will be computed and returned to the user, you may encode
+your genomic character strings by using the encodeGenomes or encodeGenome
 function in this package.}
 }
 \value{
-A vector of values indicating the average power spectral density 
-(according to the Fourier Transform) for the encoded genomes four, or two 
+A vector of values indicating the average power spectral density
+(according to the Fourier Transform) for the encoded genomes four, or two
 constituent signals.
 }
 \description{
-This function produces the power spectrum of the Fourier transform for a 
-single genomic signal that has been encoded using either the 2D or 4D 
+This function produces the power spectrum of the Fourier transform for a
+single genomic signal that has been encoded using either the 2D or 4D
 representation, the function will produce an error if it is not supplied with
 a matrix of values that has a number of rows equal to 2 or 4.
 }
 \examples{
-MTHFR100 <- "TGGCCAGGTATAGTGGCTCATACCTGTAATCCCAGCACTCTGGGAGACCGAAGCAGTATCACCTGAGGTCAGGAGTTCGAGACCAGCCTGGCCAACATG"; 
-encMTHFR100 <- encodeGenome(MTHFR100); 
-psMTHFR100 <- getPowerSpectraSingle(encMTHFR100); 
+MTHFR100 <- "TGGCCAGGTATAGTGGCTCATACCTGTAATCCCAGCACTCTGGGAGACCGAAGCAGTATCACCTGAGGTCAGGAGTTCGAGACCAGCCTGGCCAACATG";
+encMTHFR100 <- encodeGenome(MTHFR100);
+psMTHFR100 <- getPowerSpectraSingle(encMTHFR100);
 plot(psMTHFR100, type='l',xlab='Frequency/Sequency',
-     ylab='Power Spectral Density', main="Power Spectrum of First 100 nucleotides of MTHFR"); 
+     ylab='Power Spectral Density', main="Power Spectrum of First 100 nucleotides of MTHFR");
 }

@@ -8,15 +8,19 @@ evenlyScaleEnsemble(spectraList)
 }
 \description{
 This function will take an ensemble of genomic power spectra, and scale them
- all such that they are of a length equivalent to the maximum length of a 
- sequence in the ensemble. 
- @param spectraList A list containing the power spectra of genomic signals 
- for sequences of interest. 
- @return A list of scaled spectra all of which should be the same length. 
- @examples 
+ all such that they are of a length equivalent to the maximum length of a
+ sequence in the ensemble.
+}
+\details{
+@param spectraList A list containing the power spectra of genomic signals
+ for sequences of interest.
+
+ @return A list of scaled spectra all of which should be the same length.
+
+ @examples
  tg <- c("ACCCAAGAGAGAGCCCCCGAGAGAGAGAGAGAGAGCCCCGAGAGAGCGAGACGAGAC","TAGAGCCGAGATAGAGCCGAGAGTTAGAC","CGGAGAGNNGGAGAGCCCGAGAGTTTGAGNN")
- eg <- encodeGenomes(tg); 
- ps <- getPowerSpectraEnsemble(eg); 
+ eg <- encodeGenomes(tg);
+ ps <- getPowerSpectraEnsemble(eg);
  sps <- evenlyScaleEnsemble(ps);
  @export
 }

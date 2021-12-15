@@ -12,16 +12,16 @@ encodeGenomes(stringGenomes, dimension = "2D")
 \item{dimension}{is a character string either '2D' or '4D'.}
 }
 \value{
-A list containing matrixes of various column length, but either 2 or 
+A list containing matrixes of various column length, but either 2 or
 4 rows.
 }
 \description{
-Will produce a list of either the 4D or the 2D representation of a set of 
+Will produce a list of either the 4D or the 2D representation of a set of
 signals and return them in a list.
 }
 \examples{
 encodeGenomes(list('ACCCCAATTAGAGGGACTTTGGGAACCGGAGAT','GGCCCAGAGGGAAACCGGT'),
-              '2D'); 
-encodeGenomes(list('ACCCCAATTAGAGGGACTTTGGGAACCGGAGAT','GGCCCAGAGGGAAACCGGT'), 
-              '4D'); 
+              '2D');
+encodeGenomes(list('ACCCCAATTAGAGGGACTTTGGGAACCGGAGAT','GGCCCAGAGGGAAACCGGT'),
+              '4D');
 }

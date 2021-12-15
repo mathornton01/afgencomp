@@ -7,25 +7,25 @@
 getMinimalVarianceFilter(scaledPowerSpectraEnsemble, numCoeffs)
 }
 \arguments{
-\item{scaledPowerSpectraEnsemble}{a list containing the scaled power spectra for 
+\item{scaledPowerSpectraEnsemble}{a list containing the scaled power spectra for
 an ensemble of strings such as that returned by the function evenlyScaleEnsemble.}
 
-\item{numCoeffs}{The number of coefficients that the user wishes to use for the 
+\item{numCoeffs}{The number of coefficients that the user wishes to use for the
 distance calculation, this pushes all others to zero.}
 }
 \value{
-a vector of the same length as the input scaled signal length which 
-contains ones in the positions where coefficients have a high across ensemble 
+a vector of the same length as the input scaled signal length which
+contains ones in the positions where coefficients have a high across ensemble
 variance, and zero for those below the desired number of ooefficients.
 }
 \description{
-This function will generate a filter for an ensemble of strings that when 
-multiplied by the power spectra for a sample will push all components with 
+This function will generate a filter for an ensemble of strings that when
+multiplied by the power spectra for a sample will push all components with
 variance (across the ensemble) below the first 'numCoeffs' to zero.
 }
 \examples{
-en <- encodeGenomes(sarscvmay[1:5,]); 
-ps <- getPowerSpectraEnsemble(en); 
-sps <- evenlyScaleEnsemble(ps); 
-fil <- getMinimalVarianceFilter(sps,100); 
+en <- encodeGenomes(sarscvmay[1:5,]);
+ps <- getPowerSpectraEnsemble(en);
+sps <- evenlyScaleEnsemble(ps);
+fil <- getMinimalVarianceFilter(sps,100);
 }

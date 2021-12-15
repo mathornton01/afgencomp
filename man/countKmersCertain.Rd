@@ -14,13 +14,13 @@ countKmersCertain(genomicString, k, freq = FALSE)
 \item{freq}{Return the relative proportions of kmers of that kind (default FALSE - return raw counts)}
 }
 \value{
-A vector of kmer counts that contains counts for the kmers in lexicographical 
+A vector of kmer counts that contains counts for the kmers in lexicographical
 ordering.
 }
 \description{
 Produces a vector of the counts of all of the kmers in a particular character
-string representing a genetic sequence.  This implementation will first replace all 
-non-ACGT components with a gapping place holder (-) and will then proceed to 
+string representing a genetic sequence.  This implementation will first replace all
+non-ACGT components with a gapping place holder (-) and will then proceed to
 count all mers present which do not contain any gaps.
 }
 \examples{

@@ -14,10 +14,10 @@ A character vector containing the name of the optimal strategy, either
 'AC' or 'AG'.
 }
 \description{
-Uses the ensemble of strings provided by the user as a list of genomic 
-signals and determines the optimal encoding strategy by the algorithim 
-proposed in Yin and Yau 2015, where the distance from A,C concentration 
-and A,G concentration to one-half are used to determine which encoding will 
+Uses the ensemble of strings provided by the user as a list of genomic
+signals and determines the optimal encoding strategy by the algorithim
+proposed in Yin and Yau 2015, where the distance from A,C concentration
+and A,G concentration to one-half are used to determine which encoding will
 provide the best balance among all the possible encodings.
 }
 \examples{

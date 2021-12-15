@@ -1,8 +1,8 @@
 ---
-title: "The R 'afgencomp' Package"
+title: "The R 'afgencomp' (Alignment Free Genomic Comparison) Package"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{afgencomp-vignette}
+  %\VignetteIndexEntry{afgencomp description \& usage}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,6 +12,20 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+evenlyScaleEnsemble <- function(spectraList){
+  spectraLengths <- lapply(spectraList,length);
+  maxLength <- max(unlist(spectraLengths));
+  maxIndex <- which(unlist(lapply(spectraList,length)) == max(unlist(lapply(spectraList,length))));
+  scaledSpectra <- list(length(spectraList));
+  scaledSpectra[[maxIndex]] <- spectraList[[maxIndex]];
+  for (i in 1:length(spectraList)){
+    if (i == maxIndex){
+      next;
+    }
+    scaledSpectra[[i]] <- evenlyScaleSingle(spectraList[[i]], maxLength);
+  }
+  return(scaledSpectra);
+}
 ```
 
 # Background & Description 
@@ -73,7 +87,66 @@ directory which contains the `R/`, `data/`, `man/`, and `vignettes/` folders.
 
 The `devtools` library in R allows for developers to quickly and easily share 
 there packages with R-users via Github.  the `install_github` function of the 
-`devtools` package
-```{r setup}
-library(afgencomp)
+`devtools` package.  Be sure to specify that you would like for the package 
+vignette (this document) to be constructed when you run this, so that the 
+vignette is available via the `browseVignettes()` or `??` functions. 
+```{r eval=FALSE}
+library(devtools);
+devtools::install_github("https://github.com/mathornton01/afgencomp.git",build_vignettes = TRUE);
 ```
+
+# Alignment-Free Genomic Distances 
+
+When comparing genomic sequences, most procedures first determine a set of 
+mutations required to transform one sequence into another, these are referred to as 
+'post-alignment' procedures in this work.  When doing this for 
+a large group of sequences simultaneously, it can become unwieldy to align every 
+sequence to every other sequence.  This is why alignment-free procedures can be 
+useful.  It is frequently very slow to perform Multiple Sequence Alignment (MSA), 
+with large datasets.  In the afgencomp (previously YinGenomicDFTDistance) package 
+two alignment free approaches are implemented.  However, prior to actually computing
+distances and comparing sequences, the data must be processed in an appropriate manner
+
+## Quickstart Guide 
+
+A quickstart guide is provided here for ease of adoption and implementation, but it 
+is expected that for most procedures, the researcher may use the `?' functionality 
+in R as usual to retrieve runnable examples for each of the functions in the package. 
+
+```{r}
+library(afgencomp)
+# Create List with some Example Sequences. 
+sequencelist.example <- c("ACCTCGCGGCGGCGCTCTCGAGAGNNCGCGTGAGAGCTCGCN",
+                          "ACCTTGCGGCGGCGCTCTCCGTAGNNCGCGTGAGAGCTCGCN",
+                          "ACCACGGGCGGGGGCGCGTTNNNTGAGAGTNCCCGCGCGCGG",
+                          "ACCTCGCGGCGGCGCTCTCGAGAGNNCGCGTGATCGCTCGCN",
+                          "ACCTCGCGGCGGCGCTCTCGAGAGNNCGCG",
+                          "ACCTCGCGGCGGCGCTCTCGAGAGNNCGCGTGATCGCTCGCAGAGGAGGN");
+
+# Encode The Ensemble and create a 2D encoded genomic string ensemble 
+encoded.sequences <- encodeGenomes(sequencelist.example); 
+
+# Display First Sequence Signal for Example 
+plot(encoded.sequences[[1]][1,],col='blue',type='l',main="Encoded Genome 1", xlab="Genomic Loci", ylab="Encoding");
+lines(encoded.sequences[[1]][2,],col='red');
+```
+
+
+
+
+Once the genomes are encoded, the power spectra can be computed and the even scaling procedure can be applied to produce
+equal length sequences, and distances can be taken to produce phylogenies and dendrograms. 
+
+```{r}
+getPowerSpectraEnsemble(encoded.sequences) -> power.spectra.sample; 
+evenlyScaleEnsemble(power.spectra.sample) -> scaled.spectra;
+library(rlist)
+list.rbind(scaled.spectra) -> sspecmat; 
+scale(sspecmat) -> scaled.sspecmat; 
+dist(scaled.sspecmat)->scaled.sspecmat.dist;
+plot(hclust(scaled.sspecmat.dist))
+```
+
+
+
+We hope that you find some use in our package!  Thank you for your consideration.

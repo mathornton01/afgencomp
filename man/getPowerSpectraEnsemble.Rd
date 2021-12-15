@@ -7,18 +7,18 @@
 getPowerSpectraEnsemble(encodedEnsemble)
 }
 \arguments{
-\item{encodedEnsemble}{a list of encoded genomes that are produced using 
+\item{encodedEnsemble}{a list of encoded genomes that are produced using
 one of the encoding methods programmed in this package.}
 }
 \value{
 A list of Power spectra for the corresponding genomic sequences.
 }
 \description{
-This is a wrapper for the getPowerSpectraSingle function, that allows for 
+This is a wrapper for the getPowerSpectraSingle function, that allows for
 the direct return of power spectra for each of the signals in an ensemble.
 }
 \examples{
-genStrings1 <- list('ACCAAGGATATTAGGACCC','CCCCAGGGAGATTTAGG','CCCGGGAGAGATTTAG'); 
-encStrings1 <- encodeGenomes(genStrings1); 
-psStrings1 <- getPowerSpectraEnsemble(encStrings1); 
+genStrings1 <- list('ACCAAGGATATTAGGACCC','CCCCAGGGAGATTTAGG','CCCGGGAGAGATTTAG');
+encStrings1 <- encodeGenomes(genStrings1);
+psStrings1 <- getPowerSpectraEnsemble(encStrings1);
 }

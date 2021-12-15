@@ -10,16 +10,16 @@ getPowerSpectraDistances(genomeList)
 \item{genomeList}{Genetic strings expected in a list.}
 }
 \value{
-pair-wise distances matrix computed as the euclidean distance among 
+pair-wise distances matrix computed as the euclidean distance among
 the various power spectra for the sequences provided.
 }
 \description{
-Computes the Euclidean distances among all of the sequences for all of the 
-power spectra, applying a standard Euclidean distance measure to the entire 
-computed spectrum.  The result is returned as a standard pairwise distances 
+Computes the Euclidean distances among all of the sequences for all of the
+power spectra, applying a standard Euclidean distance measure to the entire
+computed spectrum.  The result is returned as a standard pairwise distances
 matrix.
 }
 \examples{
 tg <- c("ACCCAAGAGAGAGCCCCCGAGAGAGAGAGAGAGAGCCCCGAGAGAGCGAGACGAGAC","TAGAGCCGAGATAGAGCCGAGAGTTAGAC","CGGAGAGNNGGAGAGCCCGAGAGTTTGAGNN")
-dm <- getPowerSpectraDistances(tg); 
+dm <- getPowerSpectraDistances(tg);
 }

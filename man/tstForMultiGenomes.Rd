@@ -2,28 +2,18 @@
 % Please edit documentation in R/afgencomp.R
 \name{tstForMultiGenomes}
 \alias{tstForMultiGenomes}
-\title{Test Fourier Power spectra computation with random sequences 
- 
- A function for performing a test of the procedures in this package with randomly
- generated genetic strings. 
- @param numStrings the number of genomic signals to generate 
- @param avLength the average length of the genomic signals (generated according to Normal Distribution)
- @param deviation the variance of the normal distribution with which to compute the vector of lengths. 
- @examples 
- tstForMultiGenomes(100,30000,30)
- @export}
+\title{Test Fourier Power spectra computation with random sequences}
 \usage{
 tstForMultiGenomes(numStrings = 100, avLength, deviation)
 }
 \description{
-Test Fourier Power spectra computation with random sequences 
- 
- A function for performing a test of the procedures in this package with randomly
- generated genetic strings. 
- @param numStrings the number of genomic signals to generate 
+A function for performing a test of the procedures in this package with randomly
+ generated genetic strings.
+ @param numStrings the number of genomic signals to generate
  @param avLength the average length of the genomic signals (generated according to Normal Distribution)
- @param deviation the variance of the normal distribution with which to compute the vector of lengths. 
- @examples 
+ @param deviation the variance of the normal distribution with which to compute the vector of lengths.
+ @return Nothing
+ @examples
  tstForMultiGenomes(100,30000,30)
  @export
 }
