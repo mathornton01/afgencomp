@@ -19,8 +19,7 @@ The package contains documented functions which allow the user to:
 
 # Package Installation
 
-This vignette is distributed and maintained along with the software in `afgencomp`. 
-However, if you happen to find your way to this vignette, and are looking to install 
+If you are looking to install
 the `afgencomp` R-package you may do so via one of several routes: 
 
 * Install the Software from A Source Distribution using `install.packages()`
@@ -36,25 +35,25 @@ command in a terminal window where you would like to keep the package files
 or by downloading the package manually using a web-browser and navigating to the 
 [github page](https://github.com/mathornton01/afgencomp). 
 
-`
-bash> git clone https://github.com/mathornton01/afgencomp.git 
-`
+```bash
+git clone https://github.com/mathornton01/afgencomp.git 
+```
 
 Once the package has been downloaded it can be installed for R by navigating to 
 the `afgencomp` directory from within R and using the `install.packages()`
 function. 
 
-`
-r> afgencomp.pkg.dir <- "full/path/to/directory/goes/here";
-r> install.packages(afgencomp.pkg.dir, repos=NULL, type="source");
-`
+```R
+afgencomp.pkg.dir <- "full/path/to/directory/goes/here";
+install.packages(afgencomp.pkg.dir, repos=NULL, type="source");
+````
 
 Or if you would instead like to choose the file using the file-manager, you 
 can do so by running: 
 
-`
-r> install.packages(file.choose(), repos=NULL)
-`
+```R
+install.packages(file.choose(), repos=NULL)
+```
 
 then selecting the top-level directory for the package source.  That is the 
 directory which contains the `R/`, `data/`, `man/`, and `vignettes/` folders. 
@@ -67,13 +66,13 @@ there packages with R-users via Github.  the `install_github` function of the
 vignette (this document) to be constructed when you run this, so that the 
 vignette is available via the `browseVignettes()` or `??` functions. 
 
-`
-r> library(devtools);
-`
+```R
+library(devtools);
+```
 
-`
-r> devtools::install_github("https://github.com/mathornton01/afgencomp.git",build_vignettes = TRUE);
-`
+```R
+devtools::install_github("https://github.com/mathornton01/afgencomp.git",build_vignettes = TRUE);
+```
 
 # References 
 
