@@ -66,8 +66,23 @@ there packages with R-users via Github.  the `install_github` function of the
 `devtools` package.  Be sure to specify that you would like for the package 
 vignette (this document) to be constructed when you run this, so that the 
 vignette is available via the `browseVignettes()` or `??` functions. 
+
 `
 r> library(devtools);
+`
+
+`
 r> devtools::install_github("https://github.com/mathornton01/afgencomp.git",build_vignettes = TRUE);
 `
+
+# References 
+
+Much of this package was intended to implement the genomic comparison strategy implemented and used by Yin and Yau since 
+they published it in 2014.  A selection of the papers describing the techniques for power spectral distance calculation and
+scaling that are included in the package are provided: 
+
+* An improved model for whole genome phylogenetic analysis by Fourier transform, *Yin, Changchuan and Yau, Stephen S-T*, **Journal of theoretical biology vol. 382, pp. 99-110,** 2015. Elsevier.
+* A measure of DNA sequence similarity by Fourier Transform with applications on hierarchical clustering, *Yin, Changchuan and Chen, Ying and Yau, Stephen S-T*, **Journal of theoretical biology vol. 359, pp.18-28,** 2014. Elsevier.
+* A new method to cluster DNA sequences using Fourier power spectrum, *Hoang, Tung and Yin, Changchuan and Zheng, Hui and Yu, Chenglong and He, Rong Lucy and Yau, Stephen S-T*, **Journal of theoretical biology vol. 372, pp. 135-145,**2015. Elsevier. 
+
 
