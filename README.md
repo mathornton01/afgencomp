@@ -83,5 +83,6 @@ scaling that are included in the package are provided:
 * An improved model for whole genome phylogenetic analysis by Fourier transform, *Yin, Changchuan and Yau, Stephen S-T*, **Journal of theoretical biology vol. 382, pp. 99-110,** 2015. Elsevier.
 * A measure of DNA sequence similarity by Fourier Transform with applications on hierarchical clustering, *Yin, Changchuan and Chen, Ying and Yau, Stephen S-T*, **Journal of theoretical biology vol. 359, pp.18-28,** 2014. Elsevier.
 * A new method to cluster DNA sequences using Fourier power spectrum, *Hoang, Tung and Yin, Changchuan and Zheng, Hui and Yu, Chenglong and He, Rong Lucy and Yau, Stephen S-T*, **Journal of theoretical biology vol. 372, pp. 135-145,** 2015. Elsevier. 
+*  CPhylogenetic analysis of DNA sequences or genomes by Fourier transform, *Changchuan Yin* (2021). **MATLAB Central File Exchange. Retrieved December 15, 2021.** [link](https://www.mathworks.com/matlabcentral/fileexchange/52072-phylogenetic-analysis-of-dna-sequences-or-genomes-by-fourier-transform),  
 
 
