@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>The R ‘afgencomp’ (Alignment Free Genomic Comparison) Package</title>
+
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css">
+
+
+
+
+<script type="text/javascript" src="afgencomp-vignette_files/MathJax.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body><div id="MathJax_Message" style="display: none;"></div>
+
+
+
+
+<h1 class="title toc-ignore">The R ‘afgencomp’ (Alignment Free Genomic Comparison) Package</h1>
+
+
+
+<div id="background-description" class="section level1">
+<h1>Background &amp; Description</h1>
+<p>This document is the package vignette for the <code>afgencomp</code> package in R. The code in this package was originally included in a github package distributed under the name <code>YinGenomicDFTDistances</code>. This is the most current version of the software from the previous package, and all associated works.</p>
+<p>This software is developed independently from many of the extant 
+enhanced datatypes which are available within the BioConductor software 
+suite, as it is intended to be a light-weight standalone package which 
+can be used to quickly produce distances between genomic sequences using
+ alignment free methods. This being said, the primary data-type utilized
+ for storing sequences is the string.</p>
+</div>
+<div id="package-installation" class="section level1">
+<h1>Package Installation</h1>
+<p>This vignette is distributed and maintained along with the software in <code>afgencomp</code>. However, if you happen to find your way to this vignette, and are looking to install the <code>afgencomp</code> R-package you may do so via one of several routes:</p>
+<ul>
+<li>Install the Software from A Source Distribution using <code>install.packages()</code></li>
+<li>Install the Software from the Github Repository using <code>devtools::install_github()</code></li>
+<li>(Coming Soon) Install the Software from CRAN using <code>install.packages()</code></li>
+</ul>
+<div id="installing-the-software-from-source" class="section level2">
+<h2>Installing The Software from Source</h2>
+<p>The source distribution of the software is written in R, and hosted 
+on Github. The source code can be downloaded using the git software to 
+clone the <code>afgencomp</code> repository. This can be accomplished by simply typing the following <code>git</code>
+ command in a terminal window where you would like to keep the package 
+files or by downloading the package manually using a web-browser and 
+navigating to the <a href="https://github.com/mathornton01/afgencomp">github page</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/mathornton01/afgencomp.git </span></code></pre></div>
+<p>Once the package has been downloaded it can be installed for R by navigating to the <code>afgencomp</code> directory from within R and using the <code>install.packages()</code> function.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>afgencomp.pkg.dir <span class="ot">&lt;-</span> <span class="st">"full/path/to/directory/goes/here"</span>;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(afgencomp.pkg.dir, <span class="at">repos=</span><span class="cn">NULL</span>, <span class="at">type=</span><span class="st">"source"</span>);</span></code></pre></div>
+<p>Or if you would instead like to choose the file using the file-manager, you can do so by running:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">file.choose</span>(), <span class="at">repos=</span><span class="cn">NULL</span>)</span></code></pre></div>
+<p>then selecting the top-level directory for the package source. That is the directory which contains the <code>R/</code>, <code>data/</code>, <code>man/</code>, and <code>vignettes/</code> folders.</p>
+</div>
+<div id="install-the-software-from-its-official-github-repository-directly" class="section level2">
+<h2>Install The Software from Its Official Github Repository Directly</h2>
+<p>The <code>devtools</code> library in R allows for developers to quickly and easily share there packages with R-users via Github. the <code>install_github</code> function of the <code>devtools</code>
+ package. Be sure to specify that you would like for the package 
+vignette (this document) to be constructed when you run this, so that 
+the vignette is available via the <code>browseVignettes()</code> or <code>??</code> functions.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools);</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"https://github.com/mathornton01/afgencomp.git"</span>,<span class="at">build_vignettes =</span> <span class="cn">TRUE</span>);</span></code></pre></div>
+</div>
+</div>
+<div id="alignment-free-genomic-distances" class="section level1">
+<h1>Alignment-Free Genomic Distances</h1>
+<p>When comparing genomic sequences, most procedures first determine a 
+set of mutations required to transform one sequence into another, these 
+are referred to as ‘post-alignment’ procedures in this work. When doing 
+this for a large group of sequences simultaneously, it can become 
+unwieldy to align every sequence to every other sequence. This is why 
+alignment-free procedures can be useful. It is frequently very slow to 
+perform Multiple Sequence Alignment (MSA), with large datasets. In the 
+afgencomp (previously YinGenomicDFTDistance) package two alignment free 
+approaches are implemented. However, prior to actually computing 
+distances and comparing sequences, the data must be processed in an 
+appropriate manner</p>
+<div id="quickstart-guide" class="section level2">
+<h2>Quickstart Guide</h2>
+<p>A quickstart guide is provided here for ease of adoption and 
+implementation, but it is expected that for most procedures, the 
+researcher may use the `?’ functionality in R as usual to retrieve 
+runnable examples for each of the functions in the package.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afgencomp)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create List with some Example Sequences. </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sequencelist.example <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ACCTCGCGGCGGCGCTCTCGAGAGNNCGCGTGAGAGCTCGCN"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"ACCTTGCGGCGGCGCTCTCCGTAGNNCGCGTGAGAGCTCGCN"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"ACCACGGGCGGGGGCGCGTTNNNTGAGAGTNCCCGCGCGCGG"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"ACCTCGCGGCGGCGCTCTCGAGAGNNCGCGTGATCGCTCGCN"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"ACCTCGCGGCGGCGCTCTCGAGAGNNCGCG"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"ACCTCGCGGCGGCGCTCTCGAGAGNNCGCGTGATCGCTCGCAGAGGAGGN"</span>);</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Encode The Ensemble and create a 2D encoded genomic string ensemble </span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>encoded.sequences <span class="ot">&lt;-</span> <span class="fu">encodeGenomes</span>(sequencelist.example); </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Display First Sequence Signal for Example </span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(encoded.sequences[[<span class="dv">1</span>]][<span class="dv">1</span>,],<span class="at">col=</span><span class="st">'blue'</span>,<span class="at">type=</span><span class="st">'l'</span>,<span class="at">main=</span><span class="st">"Encoded Genome 1"</span>, <span class="at">xlab=</span><span class="st">"Genomic Loci"</span>, <span class="at">ylab=</span><span class="st">"Encoding"</span>);</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(encoded.sequences[[<span class="dv">1</span>]][<span class="dv">2</span>,],<span class="at">col=</span><span class="st">'red'</span>);</span></code></pre></div>
+<p><img src="data:image/png;base64,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"><!-- --></p>
+<p>Once the genomes are encoded, the power spectra can be computed and 
+the even scaling procedure can be applied to produce equal length 
+sequences, and distances can be taken to produce phylogenies and 
+dendrograms.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerSpectraEnsemble</span>(encoded.sequences) <span class="ot">-&gt;</span> power.spectra.sample; </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">evenlyScaleEnsemble</span>(power.spectra.sample) <span class="ot">-&gt;</span> scaled.spectra;</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rlist)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">list.rbind</span>(scaled.spectra) <span class="ot">-&gt;</span> sspecmat; </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">scale</span>(sspecmat) <span class="ot">-&gt;</span> scaled.sspecmat; </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dist</span>(scaled.sspecmat)<span class="ot">-&gt;</span>scaled.sspecmat.dist;</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hclust</span>(scaled.sspecmat.dist))</span></code></pre></div>
+<p><img src="data:image/png;base64,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"><!-- --></p>
+<p>We hope that you find some use in our package! Thank you for your consideration.</p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+
+</body></html>
