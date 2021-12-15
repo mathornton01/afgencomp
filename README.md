@@ -1,4 +1,4 @@
-# `Afgencomp`: An R-Package for Alignment-Free Genetic Comparison (Previously `YinGenomicDFTDistance`). 
+# `Afgencomp`: An R-Package for Alignment-Free Genetic Comparison (Previously `YinGenomicDFTDistances`). 
 
 This repository contains a software distribution of an R-Package, Afgencomp, which contains utility functions for comparing string representations of 
 genomic sequences, without having to perform multiple sequence alignment (MSA, an often timely and expensive step).  
