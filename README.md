@@ -10,10 +10,10 @@ The package contains documented functions which allow the user to:
 * Encode (a) genomic sequence(s) using a 4-D Binary representation, or 2-D 3-level representation. (`encodeGenome()`, `encodeGenomes()`).
 * Calculate the Fourier power spectra for (a) sequence(s) (`getPowerSpectraSingle()`,`getPowerSpectraEnsemble()`). 
 * *Added Post-Dissertation Defense:* Calculate the Fourier phase spectra for (a) sequence(s) (`getPhaseSpectraSingle()`,`getPhaseSpectraEnsemble()`). 
-* Evenly scale (a) series (of length $n$ < $m$) to a specified length $m$ (`evenlyScaleSingle()`,`evenlyScaleEnsemble()`). 
+* Evenly scale (a) series (of length *n* < *m*) to a specified length *m* (`evenlyScaleSingle()`,`evenlyScaleEnsemble()`). 
 * Directly compute the euclidean distance in power spectral density matrix for all genomes in list (utility function - `getPowerSpectraDistances()`).
-* Determine k-mer counts for small values of $k$ (`countKmersCertain()`).
-* Compute Vector of counts for first five kinds of kmers (utility functions - `countMersCertainFirstFive()`, `countFFMersEnsemble()`).
+* Determine *k*-mer counts for small values of *k* (`countKmersCertain()`).
+* Compute Vector of counts for first five kinds of *k*-mers (utility functions - `countMersCertainFirstFive()`, `countFFMersEnsemble()`).
 * Filter components of Power/Phase spectra with low variance across genomes in sample (`getMinimalVarianceFilter()`).
 * One test function for checking the package integrity (`tstForMultiGenomes()`). 
 
